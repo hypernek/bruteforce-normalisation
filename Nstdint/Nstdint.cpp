@@ -159,15 +159,15 @@ void Nstdint::testSequence()
 	using namespace std;
 	if (!inited)
 	{
-		cout << "Rekurence nebyla inicializována" << endl;
+		cout << "Cannot test: Basis wasn't initialized" << endl;
 		return;
 	}
 	
-	cout << "Koeficienty rekurence: " << endl;
+	cout << "Basis coefficients: " << endl;
 	for (auto t : coefficients)
 		cout << t << ", ";
 	cout << endl << endl;
-	cout << "Nagenerovane cleny rekurence: " << endl;
+	cout << "Generated elements of basis sequence: " << endl;
 	for (auto b : sequence)
 		cout << b << ", ";
 	cout << endl << endl;
@@ -178,7 +178,7 @@ void Nstdint::testNumbers()
 	using namespace std;
 	if (inited)
 	{
-		cout << "Testuji cisla" << endl;
+		cout << "Testing numbers" << endl;
 		int test_values[] = { 1, 10, 1632, 44050 };
 		std::vector<Nstdint> cisla;
 		for (int i : test_values)
@@ -199,7 +199,7 @@ void Nstdint::testNumbers()
 		Nstdint z = x + y;
 		cout << x << " + " << y << " = " << z << endl;
 
-		cout << "Zadejte libovolné číslo: " << endl;
+		cout << "Normalising a random number " << endl;
 		int GGG = 10;
 		int* cifry = new int[GGG];
 		for (int i = 0; i < GGG; i++)
@@ -212,7 +212,7 @@ void Nstdint::testNumbers()
 	}
 	else
 	{
-		cout << "Nemuzu testovat, rekurence nebyla inicializovana" << endl;
+		cout << "Cannot test, basis wasn't initialized" << endl;
 	}
 }
 
@@ -364,7 +364,7 @@ Nstdint & Nstdint::operator*=(const unsigned & p)
 void Nstdint::normalise()
 {
 	using namespace std;
-	cout << "Normalizuji cislo " << toString() << endl;
+	cout << "Normalising number " << toString() << endl;
 	int i = size - 1;
 	bool normal = false;
 	while (!normal)
@@ -381,7 +381,7 @@ void Nstdint::normalise()
 					if (digits[j] < coefficients[i - j])
 					{
 						// zápis je v pořádku, jdeme zase šoupat ičkem
-						cout << "cifra na pozici j = " << j << " splňuje hladový zápis vůči i = " << i << ", šoupeme se dál" << endl;
+						cout << "digit at position j = " << j << " satisfies the greedy representation with respect to i = " << i << ", moving on" << endl;
 						localOK = true;
 						i = j; // doposuň se
 						break;
@@ -406,14 +406,15 @@ void Nstdint::normalise()
 				}
 				if (localOK == false)
 				{
-					cout << "Problém na pozicích i = " << i << ", j = " << j << ", jdeme normalizovat: " << endl;
+					cout << "Problem at positions i = " << i << ", j = " << j << ", starting normalisation: " << endl;
 					carryNormalize(i, j);
-					cout << "Opraveno na " << toString() << endl;
+					cout << "Corrected to: " << toString() << endl;
 					i = size;
 				}
 			}
 		}
 		normal = true;
+		cout << endl << "Normal form: " << toString() << endl;
 	}
 }
 

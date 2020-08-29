@@ -80,8 +80,9 @@ void normaliseInput(std::string input_word)
 	digittype *digits = new digittype[input_word.length()];
 	for (int i = 0; i < input_word.length(); i++)
 	{
-		digits[i] = Nstdint::charToDigit(input_word[i]);
-		std::cout << "Next digit: " << input_word[i] << " = " << digits[i] << std::endl;
+		// we have to reverse because Nstdints are written least significant digit first
+		digits[input_word.length() - 1 - i] = Nstdint::charToDigit(input_word[i]);
+		//std::cout << "Next digit: " << input_word[i] << " = " << digits[i] << std::endl;
 	}
 
 	Nstdint x(input_word.length(), digits);
