@@ -107,7 +107,7 @@ void acceptInput()
 				std::string coef;
 				std::getline(ss, coef, ','); // split off next coefficient
 				bool coef_good = true;
-				std::cout << "coef: " << coef << std::endl;
+				//std::cout << "coef: " << coef << std::endl;
 				// check if it is really a number
 				for (int i = 0; i < coef.length(); i++)
 				{
